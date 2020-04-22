@@ -1,0 +1,227 @@
+*,*::after,*::before{
+	box-sizing: border-box;
+}
+:root{
+	--cell-size:100px;
+	--mark-size:calc(var(--cell-size) * .9)
+}
+body{
+	margin:0;
+	overflow-x: hidden;
+	/* overflow-y: hidden; */
+	/* padding: 0; */
+}
+#info{
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	font-size: 25px;
+
+}
+#info::before{
+	content: '';
+	position: absolute;
+	right: 5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #000;
+}
+h2{
+	text-align: center;
+	font-family: sans-serif;
+}
+h2 span:nth-child(1){
+	color: #2628b9;
+}
+h2 span:nth-child(2){
+	color: #dd3434;
+}
+h2 span:nth-child(3){
+	color: #2ac778;
+}
+.board{
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	grid-template-columns: repeat(3,auto);
+}
+.cell{
+	width: var(--cell-size);
+	height:var(--cell-size);
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+	border-top: none;
+}
+.cell:nth-child(3n + 1){
+	border-left: none;
+}
+.cell:nth-child(3n + 3){
+	border-right: none;
+}
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8){
+	border-bottom: none;
+}
+.cell.x,
+.cell.circle{
+	cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before{
+	background-color: #000;
+}
+.cell.circle::before{
+	background-color: #000;
+}
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+	background-color: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after{
+	content: '';
+	position: absolute;
+	width: calc(var(--mark-size) * .15);
+	height: var(--mark-size);
+    /* background-color: #000; */
+
+}
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before{
+	transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after{
+	transform: rotate(-45deg);
+}
+
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+}
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+	width: var(--mark-size) ;
+	height: var(--mark-size);
+	/* background-color: #000; */
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+	width: calc(var(--mark-size) * .7);
+	height: calc(var(--mark-size) * .7);
+	background-color: #fff;
+}
+.winning-message{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color:rgba(0,0,0,.9);
+	/* display: flex; */
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 5rem;
+	flex-direction: column;
+}
+.winning-message button{
+	font-size: 35px;
+	background-color: #fff;
+	border: 1px solid #000;
+	padding: 15px 40px;
+	cursor: pointer;
+	transition: 0.2s ease;
+}
+.winning-message button:hover{
+	background-color: #000;
+	border-color: #fff;
+	color: white;
+}
+.winning-message.show{
+	display: flex;
+}
+footer{
+	width: 100%;
+	height: 50px;
+	background-color: #000;
+	overflow: hidden;
+}
+footer p{
+	text-align: center;
+	color: #fff;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.info{
+	width: 500px;
+	height: 250px;
+	background-color: #ccc;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	border-radius: 20px;
+	transition: 0.3 ease-in;
+	display: none;
+}.info span{
+	position: absolute;
+	top: 1%;
+	right: 3%;
+	font-size: 50px;
+}
+.info .info-text{
+	width: 100%;
+	height: 30px;
+}
+.info .info-text p{
+	font-size: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.info .next-v{
+	width: 100%;
+	/* background-color: #fff; */
+	text-align: center;
+}
+.info .next-v p{
+	font-size: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.info .next-v ul{
+	list-style: none;
+}
+.info .next-v ul li{
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+
+
+
+
+
